@@ -23,6 +23,7 @@ import org.web3j.protocol.core.methods.request.EthFilter;
 import org.web3j.protocol.core.methods.request.ShhFilter;
 import org.web3j.protocol.core.methods.request.ShhPost;
 import org.web3j.protocol.core.methods.request.Transaction;
+import org.web3j.protocol.core.methods.response.EthTokenMeta;
 import org.web3j.protocol.http.HttpService;
 import org.web3j.utils.Numeric;
 
@@ -377,6 +378,16 @@ public class RequestTest extends RequestTester {
                 "{\"jsonrpc\":\"2.0\",\"method\":\"eth_getTransactionByHash\",\"params\":["
                         + "\"0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238\"],"
                         + "\"id\":1}");
+    }
+
+    @Test
+    public void testEthGetTokenMeta() throws Exception{
+        String url = "https://bsc-mainnet.nodereal.io/v1/661212fef6a7492899d8fad01785ed10";
+
+        web3j = Web3j.build(new HttpService(url, true));
+        EthTokenMeta send = web3j.ethGetTokenMeta("0x694733ab1618a275d7e4b20d05faaf450d56efc6")
+            .send();
+        System.out.println(send.getTokenMeta());
     }
 
     @Test

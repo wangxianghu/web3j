@@ -64,6 +64,7 @@ import org.web3j.protocol.core.methods.response.EthSubmitHashrate;
 import org.web3j.protocol.core.methods.response.EthSubmitWork;
 import org.web3j.protocol.core.methods.response.EthSubscribe;
 import org.web3j.protocol.core.methods.response.EthSyncing;
+import org.web3j.protocol.core.methods.response.EthTokenMeta;
 import org.web3j.protocol.core.methods.response.EthTransaction;
 import org.web3j.protocol.core.methods.response.EthUninstallFilter;
 import org.web3j.protocol.core.methods.response.Log;
@@ -277,6 +278,16 @@ public class JsonRpc2_0Web3j implements Web3j {
                 Arrays.asList(blockHash),
                 web3jService,
                 EthGetBlockTransactionCountByHash.class);
+    }
+
+    @Override
+    public Request<?, EthTokenMeta> ethGetTokenMeta(String token) {
+        return new Request<>(
+            "nr_getTokenMeta",
+            0,
+            Arrays.asList(token),
+            web3jService,
+            EthTokenMeta.class);
     }
 
     @Override
